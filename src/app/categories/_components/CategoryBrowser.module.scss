@@ -1,22 +1,29 @@
 @use "../../../styles/mixins";
+@use "../../../styles/section-wave";
 
 .page {
   overflow: hidden;
 }
 
 .hero {
+  --hero-wave-height: clamp(4rem, 9vw, 8rem);
   position: relative;
-  background: #f6f1e8;
+  background: #293e30;
+
+  .eyebrow {
+    color: #f2d27c;
+  }
 
   &::after {
     position: absolute;
-    right: -5%;
+    right: 0;
     bottom: -1px;
-    left: -5%;
-    height: 2.75rem;
-    border-radius: 50% 50% 0 0 / 45% 45% 0 0;
+    left: 0;
+    height: var(--hero-wave-height);
     background: var(--color-background);
+    @include section-wave.mask;
     content: "";
+    pointer-events: none;
   }
 }
 
@@ -26,7 +33,7 @@
   gap: 2.25rem;
   min-height: 31rem;
   align-items: center;
-  padding-block: 3.5rem 5.5rem;
+  padding-block: 3.5rem calc(var(--hero-wave-height) + 2rem);
 }
 
 .heroCopy {
@@ -46,7 +53,7 @@
     span {
       display: block;
     }
-    color: #243422;
+    color: #f8f6ef;
     font-family: var(--font-heading);
     font-size: clamp(2.75rem, 9vw, 4rem);
     font-weight: 600;
@@ -69,7 +76,7 @@
 .heroDescription {
   max-width: 29rem;
   margin: 0 0 1.5rem;
-  color: #596256;
+  color: #ced6cb;
   font-size: 0.875rem;
   line-height: 1.55;
 }
@@ -452,20 +459,23 @@
 }
 
 .moreSection {
+  --more-wave-height: clamp(4rem, 8vw, 7rem);
   position: relative;
-  scroll-margin-top: 2rem;
-  background: #30452b;
-  color: #ffffff;
+  scroll-margin-top: calc(var(--more-wave-height) + 2rem);
+  margin-top: var(--more-wave-height);
+  background: #f2d27c;
+  color: #452f27;
 
   &::before {
     position: absolute;
-    top: -1.75rem;
-    right: -5%;
-    left: -5%;
-    height: 2rem;
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-    background: #30452b;
+    top: calc(1px - var(--more-wave-height));
+    right: 0;
+    left: 0;
+    height: var(--more-wave-height);
+    background: #f2d27c;
+    @include section-wave.mask;
     content: "";
+    pointer-events: none;
   }
 }
 
@@ -479,7 +489,7 @@
   text-align: center;
 
   .eyebrow {
-    color: #f2d27c;
+    color: #9a5138;
   }
 
   h2 {
@@ -493,7 +503,7 @@
   > p:not(.eyebrow) {
     max-width: 26rem;
     margin: 0 auto;
-    color: rgb(255 255 255 / 76%);
+    color: #634c37;
     font-size: 0.8125rem;
     line-height: 1.5;
   }
@@ -511,15 +521,15 @@
     justify-content: space-between;
     gap: 0.75rem;
     padding-inline: 1rem;
-    border: 1px solid rgb(255 255 255 / 18%);
+    border: 1px solid rgb(69 47 39 / 25%);
     border-radius: 0.875rem;
-    background: rgb(255 255 255 / 6%);
+    background: rgb(255 255 255 / 20%);
     font-family: var(--font-heading);
     font-size: 1rem;
 
     svg {
       flex: 0 0 auto;
-      color: #f2d27c;
+      color: #9a5138;
     }
   }
 }
@@ -527,7 +537,7 @@
 @include mixins.tablet {
   .heroInner {
     min-height: 33rem;
-    padding-block: 4rem 6rem;
+    padding-block: 4rem calc(var(--hero-wave-height) + 2rem);
   }
 
   .discovery {
@@ -568,7 +578,7 @@
   .heroInner {
     grid-template-columns: minmax(0, 1fr) minmax(31rem, 0.9fr);
     min-height: 27rem;
-    padding-block: 3rem 5rem;
+    padding-block: 3rem calc(var(--hero-wave-height) + 2rem);
   }
 
   .heroCopy {
