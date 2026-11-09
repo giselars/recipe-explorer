@@ -125,64 +125,51 @@
 .collage {
   position: relative;
   width: 100%;
-  max-width: 27rem;
-  aspect-ratio: 27 / 20;
+  max-width: 29rem;
+  aspect-ratio: 29 / 21;
   justify-self: center;
 }
 
-.collageCluster,
-.collageBackdrop,
-.collageImage {
-  position: absolute;
-  display: block;
-}
-
 .collageCluster {
+  position: absolute;
   inset: 0;
-}
-
-.collageBackdrop {
-  top: 1%;
-  left: 18%;
-  width: 68%;
-  height: 92%;
-  border-radius: 50%;
-  background: #dde7d7;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: stretch;
+  gap: 0.875rem;
+  padding: 0.75rem;
 }
 
 .collageImage {
-  z-index: 1;
+  position: relative;
+  display: block;
   overflow: hidden;
-  border: 0.35rem solid #fff9ea;
-  border-radius: 50%;
-  box-shadow: 0 0.55rem 1.5rem rgb(38 62 32 / 18%);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 1.5rem;
+  box-shadow: 0 0.75rem 1.75rem rgb(10 24 16 / 16%);
 
   img {
-    object-fit: cover;
+    object-fit: contain;
+    padding: 0.75rem;
   }
 }
 
 .collageMain {
-  top: 4%;
-  left: 23%;
-  width: 60%;
-  aspect-ratio: 1;
+  grid-row: 1 / -1;
+  margin-block: 1.75rem;
+  background: #dde7d7;
+  transform: rotate(-4deg);
 }
 
 .collageLeft {
-  z-index: 2;
-  top: 10%;
-  left: 7%;
-  width: 28%;
-  aspect-ratio: 1;
+  background: #f2d27c;
+  transform: rotate(3deg);
 }
 
 .collageRight {
-  z-index: 2;
-  top: 60%;
-  left: 67%;
-  width: 26%;
-  aspect-ratio: 1;
+  background: #ead7c5;
+  transform: rotate(3deg);
 }
 
 .discovery {

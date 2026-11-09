@@ -82,7 +82,6 @@ export const CategoryBrowser = ({ categories }: Props) => {
           {featured.length > 0 && (
             <div className={styles.collage} aria-hidden="true">
               <span className={styles.collageCluster}>
-                <span className={styles.collageBackdrop} />
                 {featured[0]?.imageUrl && (
                   <span
                     className={`${styles.collageImage} ${styles.collageMain}`}
@@ -91,7 +90,7 @@ export const CategoryBrowser = ({ categories }: Props) => {
                       src={featured[0].imageUrl}
                       alt=""
                       fill
-                      sizes="18rem"
+                      sizes="(min-width: 768px) 15rem, 50vw"
                       priority
                     />
                   </span>
@@ -104,7 +103,7 @@ export const CategoryBrowser = ({ categories }: Props) => {
                       src={featured[1].imageUrl}
                       alt=""
                       fill
-                      sizes="8rem"
+                      sizes="(min-width: 768px) 13rem, 45vw"
                     />
                   </span>
                 )}
@@ -116,7 +115,7 @@ export const CategoryBrowser = ({ categories }: Props) => {
                       src={featured[3].imageUrl}
                       alt=""
                       fill
-                      sizes="7rem"
+                      sizes="(min-width: 768px) 13rem, 45vw"
                     />
                   </span>
                 )}
