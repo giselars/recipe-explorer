@@ -229,8 +229,23 @@
 }
 
 .basicsSection {
+  --basics-wave-height: clamp(4rem, 9vw, 8rem);
+  position: relative;
+  padding-bottom: var(--basics-wave-height);
   background: #293e30;
   color: #f8f6ef;
+
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: var(--basics-wave-height);
+    background: var(--color-background);
+    @include section-wave.mask;
+    content: "";
+    pointer-events: none;
+  }
 }
 
 .basicsInner {
