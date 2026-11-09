@@ -93,84 +93,48 @@
 }
 
 .heroCollage {
-  position: relative;
+  display: grid;
   width: 100%;
-  max-width: 40rem;
-  aspect-ratio: 640 / 460;
+  max-width: 36rem;
+  aspect-ratio: 6 / 5;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
   justify-self: center;
   order: 1;
 }
 
-.terracottaSun,
-.butterAccent,
 .heroMainImage,
 .heroDetailOne,
 .heroDetailTwo {
-  position: absolute;
+  position: relative;
   display: block;
-}
-
-.terracottaSun,
-.butterAccent {
-  border-radius: 50%;
-}
-
-.terracottaSun {
-  top: 4.3%;
-  left: 16.9%;
-  width: 50.9%;
-  aspect-ratio: 1;
-  background: #c96643;
-}
-
-.butterAccent {
-  right: 5.6%;
-  bottom: 10.4%;
-  width: 18.75%;
-  aspect-ratio: 1;
-  background: #f2d27c;
-}
-
-.heroMainImage {
-  z-index: 1;
-  top: 10.4%;
-  left: 27.5%;
-  width: 59.7%;
-  aspect-ratio: 1;
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
-  border-radius: 49.7% 7.3% 49.7% 7.3%;
-  box-shadow: 0 0.875rem 2.125rem rgb(109 72 57 / 24%);
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(109 72 57 / 10%);
 
   img {
     object-fit: cover;
+  }
+}
+
+.heroMainImage {
+  grid-row: 1 / -1;
+
+  &:only-child {
+    grid-column: 1 / -1;
   }
 }
 
 .heroDetailOne,
 .heroDetailTwo {
-  z-index: 2;
-  overflow: hidden;
-  border: 0.3rem solid #fff9ea;
-  border-radius: 50%;
-  box-shadow: 0 0.5rem 1.25rem rgb(109 72 57 / 24%);
+  grid-column: 2;
 
-  img {
-    object-fit: cover;
+  &:nth-child(2):last-child {
+    grid-row: 1 / -1;
   }
-}
-
-.heroDetailOne {
-  bottom: 15.2%;
-  left: 7.5%;
-  width: 20.6%;
-  aspect-ratio: 1;
-}
-
-.heroDetailTwo {
-  top: 11.3%;
-  right: 6.9%;
-  width: 16.25%;
-  aspect-ratio: 1;
 }
 
 .facts {
@@ -399,20 +363,10 @@
 .atlasMap {
   position: absolute;
   inset: 0;
-  background: url("/illustrations/complete-abstract-world-map.svg") center /
-    contain no-repeat;
-  opacity: 0.2;
-}
-
-.atlasAccent {
-  position: absolute;
-  right: 4%;
-  bottom: 12%;
-  width: 6rem;
-  height: 6rem;
-  border-radius: 50%;
-  background: #c96643;
-  opacity: 0.9;
+  background: #c2d4b8;
+  mask: url("/illustrations/complete-abstract-world-map.svg") center / contain
+    no-repeat;
+  opacity: 0.24;
 }
 
 .empty {
@@ -529,7 +483,6 @@
   .atlasMap {
     left: auto;
     width: 32rem;
-    background-position: center right;
-    opacity: 0.3;
+    mask-position: center right;
   }
 }
