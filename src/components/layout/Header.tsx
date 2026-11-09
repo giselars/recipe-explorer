@@ -1,3 +1,4 @@
+import { StickyHeader } from "./StickyHeader";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { FavoritesLink } from "./FavoritesLink";
@@ -6,7 +7,7 @@ import styles from "./Header.module.scss";
 
 export const Header = () => {
   return (
-    <header className={styles.header}>
+    <StickyHeader>
       <div className={`${styles.inner} site-container`}>
         <Link
           className={styles.brand}
@@ -27,6 +28,6 @@ export const Header = () => {
           <FavoritesLink />
         </div>
       </div>
-    </header>
+    </StickyHeader>
   );
 };
