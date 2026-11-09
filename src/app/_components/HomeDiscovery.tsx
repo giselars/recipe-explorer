@@ -172,8 +172,8 @@ export const HomeDiscovery = ({
           <header className={styles.sectionHeading} data-home-reveal="rise">
             <div>
               <p className={styles.eyebrow}>Handpicked for you</p>
-              <h2>Discover recipes</h2>
-              <span>A small editorial selection from TheMealDB.</span>
+              <h2>Something worth cooking.</h2>
+              <span>Four recipes to take to your table.</span>
             </div>
             <Link className={styles.textLink} href="/categories">
               Browse categories <ArrowRight size={15} aria-hidden="true" />
@@ -189,7 +189,7 @@ export const HomeDiscovery = ({
                   { "--home-delay": `${(index + 1) * 80}ms` } as CSSProperties
                 }
               >
-                <HomeRecipeCard recipe={recipe} />
+                <HomeRecipeCard recipe={recipe} featured={index === 0} />
               </div>
             ))}
           </div>
