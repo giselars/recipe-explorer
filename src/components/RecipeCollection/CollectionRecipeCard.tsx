@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { FavoriteButton } from "@/components";
 import type { RecipeSummary } from "@/models/recipe";
-import styles from "./CategoryRecipeCard.module.scss";
+import styles from "./CollectionRecipeCard.module.scss";
 
 interface Props {
   recipe: RecipeSummary;
@@ -12,7 +12,7 @@ interface Props {
   index?: number;
 }
 
-export const CategoryRecipeCard = ({
+export const CollectionRecipeCard = ({
   recipe,
   variant = "standard",
   priority = false,

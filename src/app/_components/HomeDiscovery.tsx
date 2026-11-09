@@ -90,6 +90,7 @@ export const HomeDiscovery = ({
       {hasIngredients && (
         <section
           className={styles.basicsSection}
+          id="ingredients"
           aria-labelledby="basics-title"
         >
           <div className={`${styles.basicsInner} site-container`}>
