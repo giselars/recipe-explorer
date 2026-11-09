@@ -1,22 +1,29 @@
 @use "../../../styles/mixins";
+@use "../../../styles/section-wave";
 
 .page {
   overflow: hidden;
 }
 
 .hero {
+  --hero-wave-height: clamp(4rem, 9vw, 8rem);
   position: relative;
-  background: #f6f1e8;
+  background: #293e30;
+
+  .eyebrow {
+    color: #f2d27c;
+  }
 
   &::after {
     position: absolute;
-    right: -5%;
+    right: 0;
     bottom: -1px;
-    left: -5%;
-    height: 2.75rem;
-    border-radius: 50% 50% 0 0 / 45% 45% 0 0;
+    left: 0;
+    height: var(--hero-wave-height);
     background: var(--color-background);
+    @include section-wave.mask;
     content: "";
+    pointer-events: none;
   }
 }
 
@@ -26,7 +33,7 @@
   gap: 2.25rem;
   min-height: 31rem;
   align-items: center;
-  padding-block: 3.5rem 5.5rem;
+  padding-block: 3.5rem calc(var(--hero-wave-height) + 2rem);
 }
 
 .heroCopy {
@@ -46,7 +53,7 @@
     span {
       display: block;
     }
-    color: #243422;
+    color: #f8f6ef;
     font-family: var(--font-heading);
     font-size: clamp(2.75rem, 9vw, 4rem);
     font-weight: 600;
@@ -69,7 +76,7 @@
 .heroDescription {
   max-width: 29rem;
   margin: 0 0 1.5rem;
-  color: #596256;
+  color: #ced6cb;
   font-size: 0.875rem;
   line-height: 1.55;
 }
@@ -118,64 +125,51 @@
 .collage {
   position: relative;
   width: 100%;
-  max-width: 27rem;
-  aspect-ratio: 27 / 20;
+  max-width: 29rem;
+  aspect-ratio: 29 / 21;
   justify-self: center;
 }
 
-.collageCluster,
-.collageBackdrop,
-.collageImage {
-  position: absolute;
-  display: block;
-}
-
 .collageCluster {
+  position: absolute;
   inset: 0;
-}
-
-.collageBackdrop {
-  top: 1%;
-  left: 18%;
-  width: 68%;
-  height: 92%;
-  border-radius: 50%;
-  background: #dde7d7;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: stretch;
+  gap: 0.875rem;
+  padding: 0.75rem;
 }
 
 .collageImage {
-  z-index: 1;
+  position: relative;
+  display: block;
   overflow: hidden;
-  border: 0.35rem solid #fff9ea;
-  border-radius: 50%;
-  box-shadow: 0 0.55rem 1.5rem rgb(38 62 32 / 18%);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 1.5rem;
+  box-shadow: 0 0.75rem 1.75rem rgb(10 24 16 / 16%);
 
   img {
-    object-fit: cover;
+    object-fit: contain;
+    padding: 0.75rem;
   }
 }
 
 .collageMain {
-  top: 4%;
-  left: 23%;
-  width: 60%;
-  aspect-ratio: 1;
+  grid-row: 1 / -1;
+  margin-block: 1.75rem;
+  background: #dde7d7;
+  transform: rotate(-4deg);
 }
 
 .collageLeft {
-  z-index: 2;
-  top: 10%;
-  left: 7%;
-  width: 28%;
-  aspect-ratio: 1;
+  background: #f2d27c;
+  transform: rotate(3deg);
 }
 
 .collageRight {
-  z-index: 2;
-  top: 60%;
-  left: 67%;
-  width: 26%;
-  aspect-ratio: 1;
+  background: #ead7c5;
+  transform: rotate(3deg);
 }
 
 .discovery {
@@ -452,20 +446,23 @@
 }
 
 .moreSection {
+  --more-wave-height: clamp(4rem, 8vw, 7rem);
   position: relative;
-  scroll-margin-top: 2rem;
-  background: #30452b;
-  color: #ffffff;
+  scroll-margin-top: calc(var(--more-wave-height) + 2rem);
+  margin-top: var(--more-wave-height);
+  background: #f2d27c;
+  color: #452f27;
 
   &::before {
     position: absolute;
-    top: -1.75rem;
-    right: -5%;
-    left: -5%;
-    height: 2rem;
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-    background: #30452b;
+    top: calc(1px - var(--more-wave-height));
+    right: 0;
+    left: 0;
+    height: var(--more-wave-height);
+    background: #f2d27c;
+    @include section-wave.mask;
     content: "";
+    pointer-events: none;
   }
 }
 
@@ -479,7 +476,7 @@
   text-align: center;
 
   .eyebrow {
-    color: #f2d27c;
+    color: #9a5138;
   }
 
   h2 {
@@ -493,7 +490,7 @@
   > p:not(.eyebrow) {
     max-width: 26rem;
     margin: 0 auto;
-    color: rgb(255 255 255 / 76%);
+    color: #634c37;
     font-size: 0.8125rem;
     line-height: 1.5;
   }
@@ -511,15 +508,15 @@
     justify-content: space-between;
     gap: 0.75rem;
     padding-inline: 1rem;
-    border: 1px solid rgb(255 255 255 / 18%);
+    border: 1px solid rgb(69 47 39 / 25%);
     border-radius: 0.875rem;
-    background: rgb(255 255 255 / 6%);
+    background: rgb(255 255 255 / 20%);
     font-family: var(--font-heading);
     font-size: 1rem;
 
     svg {
       flex: 0 0 auto;
-      color: #f2d27c;
+      color: #9a5138;
     }
   }
 }
@@ -527,7 +524,7 @@
 @include mixins.tablet {
   .heroInner {
     min-height: 33rem;
-    padding-block: 4rem 6rem;
+    padding-block: 4rem calc(var(--hero-wave-height) + 2rem);
   }
 
   .discovery {
@@ -568,7 +565,7 @@
   .heroInner {
     grid-template-columns: minmax(0, 1fr) minmax(31rem, 0.9fr);
     min-height: 27rem;
-    padding-block: 3rem 5rem;
+    padding-block: 3rem calc(var(--hero-wave-height) + 2rem);
   }
 
   .heroCopy {

@@ -1,0 +1,7 @@
+$section-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 140' preserveAspectRatio='none'%3E%3Cpath d='M0 64C160 64 200 8 360 8S600 112 800 100S1120 8 1280 24S1390 48 1440 48V140H0Z' fill='black'/%3E%3C/svg%3E");
+
+@mixin mask {
+  mask-image: $section-wave-mask;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
