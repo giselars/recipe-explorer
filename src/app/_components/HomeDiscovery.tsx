@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+import { HomeMotion } from "./HomeMotion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Recipe } from "@/models/recipe";
@@ -21,7 +23,7 @@ export const HomeDiscovery = ({
   const hasIngredients = ingredients.length > 0;
 
   return (
-    <main className={styles.page}>
+    <HomeMotion className={styles.page}>
       <section
         className={`${styles.hero} ${hasIngredients ? styles.heroToGreen : styles.heroToIvory}`}
       >
@@ -64,7 +66,7 @@ export const HomeDiscovery = ({
           aria-labelledby="basics-title"
         >
           <div className={`${styles.basicsInner} site-container`}>
-            <div className={styles.basicsIntro}>
+            <div className={styles.basicsIntro} data-home-reveal="rise">
               <p className={styles.eyebrow}>Ingredient spotlight</p>
               <h2 id="basics-title">
                 Simple ingredients.
@@ -81,7 +83,7 @@ export const HomeDiscovery = ({
               </Link>
             </div>
             <div>
-              <p className={styles.selectionLabel}>
+              <p className={styles.selectionLabel} data-home-reveal="rise">
                 A few good places to start
               </p>
               <ul
@@ -89,7 +91,13 @@ export const HomeDiscovery = ({
                 aria-label="Popular ingredients"
               >
                 {ingredients.map((ingredient, index) => (
-                  <li key={ingredient}>
+                  <li
+                    key={ingredient}
+                    data-home-reveal="rise"
+                    style={
+                      { "--home-delay": `${index * 90}ms` } as CSSProperties
+                    }
+                  >
                     <Link
                       href={`/ingredients/${encodeURIComponent(ingredient)}`}
                     >
@@ -107,7 +115,7 @@ export const HomeDiscovery = ({
                 ))}
               </ul>
             </div>
-            <p className={styles.kitchenNote}>
+            <p className={styles.kitchenNote} data-home-reveal="rise">
               <span>From the kitchen</span>
               Let good ingredients do the talking.
             </p>
@@ -117,7 +125,7 @@ export const HomeDiscovery = ({
 
       {recipes.length > 0 && (
         <section className={`${styles.recipeSection} site-container`}>
-          <header className={styles.sectionHeading}>
+          <header className={styles.sectionHeading} data-home-reveal="rise">
             <div>
               <p className={styles.eyebrow}>Handpicked for you</p>
               <h2>Discover recipes</h2>
@@ -128,8 +136,17 @@ export const HomeDiscovery = ({
             </Link>
           </header>
           <div className={styles.recipeGrid}>
-            {recipes.map((recipe) => (
-              <HomeRecipeCard key={recipe.id} recipe={recipe} />
+            {recipes.map((recipe, index) => (
+              <div
+                key={recipe.id}
+                className={styles.recipeEntry}
+                data-home-reveal="rise"
+                style={
+                  { "--home-delay": `${(index + 1) * 80}ms` } as CSSProperties
+                }
+              >
+                <HomeRecipeCard recipe={recipe} />
+              </div>
             ))}
           </div>
         </section>
@@ -140,7 +157,7 @@ export const HomeDiscovery = ({
           className={`${styles.editorialSection} ${styles.worldSection}`}
         >
           <div className={`${styles.editorialInner} site-container`}>
-            <div className={styles.editorialContent}>
+            <div className={styles.editorialContent} data-home-reveal="rise">
               <div className={styles.editorialCopy}>
                 <p className={styles.eyebrow}>Explore cuisines</p>
                 <h2>Cook around the world</h2>
@@ -165,10 +182,17 @@ export const HomeDiscovery = ({
               </div>
             </div>
 
-            <span className={styles.worldArtwork} aria-hidden="true" />
+            <div
+              className={styles.worldMapReveal}
+              data-home-reveal="map"
+              data-home-map
+              aria-hidden="true"
+            >
+              <span className={styles.worldArtwork} />
+            </div>
           </div>
         </section>
       )}
-    </main>
+    </HomeMotion>
   );
 };

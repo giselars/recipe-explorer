@@ -289,7 +289,8 @@ $section-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
     );
     transition:
       background-color 180ms ease,
-      border-color 180ms ease;
+      border-color 180ms ease,
+      transform 220ms ease;
 
     &::before {
       position: absolute;
@@ -302,9 +303,11 @@ $section-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
       pointer-events: none;
     }
 
-    &:hover {
-      border-color: #a8bd9c;
-      background-color: rgb(255 255 255 / 8%);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: #a8bd9c;
+        background-color: rgb(255 255 255 / 8%);
+      }
     }
   }
 }
@@ -460,11 +463,16 @@ $section-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
   }
 }
 
-.worldArtwork {
-  display: block;
+.worldMapReveal {
   width: min(100%, 36rem);
   aspect-ratio: 16 / 9;
   justify-self: center;
+}
+
+.worldArtwork {
+  display: block;
+  height: 100%;
+  width: 100%;
   background-image: url("/illustrations/complete-abstract-world-map.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -613,7 +621,7 @@ $section-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
     justify-content: flex-start;
   }
 
-  .worldArtwork {
+  .worldMapReveal {
     width: 100%;
     max-width: 40rem;
   }
@@ -640,5 +648,33 @@ $section-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
 
   .recipeGrid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.recipeEntry > article {
+  height: 100%;
+}
+
+.ingredientCta svg {
+  transition: transform 220ms ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ingredientGrid a:focus-visible {
+    transform: translateY(-4px);
+
+    .ingredientCta svg {
+      transform: translateX(4px);
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .ingredientGrid a:hover {
+      transform: translateY(-4px);
+
+      .ingredientCta svg {
+        transform: translateX(4px);
+      }
+    }
   }
 }
