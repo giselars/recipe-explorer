@@ -74,8 +74,8 @@ const CuisineRecipesPage = async ({ params }: Props) => {
   const country = countryNames[cuisine] ?? cuisine;
   const featuredRecipe = recipes[0];
   const remainingRecipes = recipes.slice(1);
-  const heroDetailOne = recipes[5] ?? recipes[1];
-  const heroDetailTwo = recipes[1] ?? recipes[2];
+  const heroDetailOne = recipes[5] ?? recipes[2];
+  const heroDetailTwo = recipes[1];
   const facts = [
     { icon: MapPin, label: "Cuisine", value: cuisine },
     {
@@ -112,15 +112,13 @@ const CuisineRecipesPage = async ({ params }: Props) => {
 
           {featuredRecipe && (
             <div className={styles.heroCollage} aria-hidden="true">
-              <span className={styles.terracottaSun} />
-              <span className={styles.butterAccent} />
               <span className={styles.heroMainImage}>
                 <Image
                   src={featuredRecipe.imageUrl}
                   alt=""
                   fill
                   priority
-                  sizes="(min-width: 1024px) 26rem, 72vw"
+                  sizes="(min-width: 1024px) 23rem, (min-width: 640px) 24rem, 64vw"
                 />
               </span>
               {heroDetailOne && (
@@ -130,7 +128,7 @@ const CuisineRecipesPage = async ({ params }: Props) => {
                     alt=""
                     fill
                     priority
-                    sizes="8rem"
+                    sizes="(min-width: 640px) 13rem, 34vw"
                   />
                 </span>
               )}
@@ -141,7 +139,7 @@ const CuisineRecipesPage = async ({ params }: Props) => {
                     alt=""
                     fill
                     priority
-                    sizes="7rem"
+                    sizes="(min-width: 640px) 13rem, 34vw"
                   />
                 </span>
               )}
@@ -262,7 +260,6 @@ const CuisineRecipesPage = async ({ params }: Props) => {
             </Link>
           </div>
           <span className={styles.atlasMap} aria-hidden="true" />
-          <span className={styles.atlasAccent} aria-hidden="true" />
         </div>
       </section>
     </main>
