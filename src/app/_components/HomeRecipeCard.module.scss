@@ -1,11 +1,5 @@
 .card {
   position: relative;
-  overflow: hidden;
-  border: 1px solid
-    color-mix(in srgb, var(--color-outline-subtle) 55%, transparent);
-  border-radius: 0.875rem;
-  background: var(--color-surface);
-  box-shadow: 0 0.1875rem 0.875rem rgb(28 36 27 / 6%);
 }
 
 .favorite {
@@ -35,7 +29,8 @@
 
 .imageWrap {
   position: relative;
-  aspect-ratio: 1.45 / 1;
+  aspect-ratio: 1.55 / 1;
+  border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
@@ -45,7 +40,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .link:hover .image {
+  .imageWrap:hover .image {
     transform: scale(1.035);
   }
 }
@@ -54,7 +49,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 0.875rem 1rem 1.125rem;
+  padding: 1rem 0;
 
   h3 {
     margin: 0.625rem 0 0.55rem;
@@ -92,5 +87,61 @@
     letter-spacing: 0.06em;
     line-height: 1.2;
     text-transform: uppercase;
+  }
+}
+
+.readRecipe {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.featured {
+  .link {
+    height: auto;
+  }
+
+  .content h3 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+  }
+}
+
+.compact {
+  .link {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .imageWrap {
+    width: 7rem;
+    flex-shrink: 0;
+    aspect-ratio: 1;
+  }
+  .content {
+    min-width: 0;
+    padding: 0;
+  }
+  .content h3 {
+    line-height: 1.25;
+  }
+  .favorite {
+    top: 0.4rem;
+    left: 0.4rem;
+    right: auto;
+  }
+}
+
+@media (min-width: 48rem) {
+  .compact .imageWrap {
+    width: 10rem;
+  }
+  .compact .link {
+    gap: 1.5rem;
   }
 }

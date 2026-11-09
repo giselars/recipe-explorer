@@ -1,28 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import type { Recipe } from "@/models/recipe";
 import styles from "./HomeRecipeCard.module.scss";
 
 interface Props {
   recipe: Recipe;
+  featured?: boolean;
 }
 
-const getDescription = (instructions: string) => {
-  const normalized = instructions.replace(/\s+/g, " ").trim();
-  const firstSentence =
-    normalized.match(/^.*?[.!?](?:\s|$)/)?.[0] ?? normalized;
-
-  return firstSentence.length > 92
-    ? `${firstSentence.slice(0, 89).trimEnd()}…`
-    : firstSentence;
-};
-
-export const HomeRecipeCard = ({ recipe }: Props) => {
+export const HomeRecipeCard = ({ recipe, featured = false }: Props) => {
   const secondaryTag = recipe.tags[0] ?? recipe.area;
 
   return (
-    <article className={styles.card}>
+    <article
+      className={`${styles.card} ${featured ? styles.featured : styles.compact}`}
+    >
       <div className={styles.favorite}>
         <FavoriteButton
           recipeId={recipe.id}
@@ -30,25 +24,33 @@ export const HomeRecipeCard = ({ recipe }: Props) => {
           variant="overlay"
         />
       </div>
-      <Link href={`/recipes/${recipe.id}`} className={styles.link}>
-        <div className={styles.imageWrap}>
+      <div className={styles.link}>
+        <Link href={`/recipes/${recipe.id}`} className={styles.imageWrap}>
           <Image
             className={styles.image}
             src={recipe.imageUrl}
             alt={recipe.name}
             fill
-            sizes="(min-width: 1024px) 18rem, (min-width: 640px) 45vw, 100vw"
+            sizes={
+              featured
+                ? "(min-width: 1024px) 50vw, 100vw"
+                : "(min-width: 768px) 180px, 112px"
+            }
           />
-        </div>
+        </Link>
         <div className={styles.content}>
           <div className={styles.tags}>
             {recipe.category && <span>{recipe.category}</span>}
             {secondaryTag && <span>{secondaryTag}</span>}
           </div>
-          <h3>{recipe.name}</h3>
-          <p>{getDescription(recipe.instructions)}</p>
+          <h3>
+            <Link href={`/recipes/${recipe.id}`}>{recipe.name}</Link>
+          </h3>
+          <Link href={`/recipes/${recipe.id}`} className={styles.readRecipe}>
+            View recipe <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
         </div>
-      </Link>
+      </div>
     </article>
   );
 };
