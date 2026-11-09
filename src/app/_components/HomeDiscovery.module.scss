@@ -71,6 +71,43 @@
   justify-self: center;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .heroContent,
+  .heroFallback {
+    > * {
+      animation: heroEnter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    > :nth-child(2) {
+      animation-delay: 100ms;
+    }
+
+    > :nth-child(3) {
+      animation-delay: 200ms;
+    }
+
+    > :nth-child(4) {
+      animation-delay: 300ms;
+    }
+
+    > :focus-visible {
+      animation: none;
+    }
+  }
+}
+
+@keyframes heroEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .kicker,
 .eyebrow {
   display: inline-flex;
@@ -213,7 +250,7 @@
   h2 {
     margin-bottom: 1.25rem;
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.75rem, 5vw, 4.5rem);
     font-weight: 500;
     letter-spacing: -0.035em;
     line-height: 1.16;
@@ -263,99 +300,76 @@
 }
 
 .ingredientGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
   padding: 0;
   margin: 0;
   list-style: none;
+  border-top: 1px solid rgb(212 221 197 / 30%);
+
+  li {
+    border-bottom: 1px solid rgb(212 221 197 / 25%);
+  }
 
   a {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
     display: flex;
-    min-height: 10.5rem;
-    flex-direction: column;
-    padding: 1.125rem;
-    border: 1px solid rgb(212 221 197 / 20%);
-    border-radius: var(--radius-lg);
-    background-color: rgb(255 255 255 / 3%);
-    background-image: radial-gradient(
-      ellipse at top right,
-      rgb(212 221 197 / 9%),
-      transparent 75%
-    );
-    transition:
-      background-color 180ms ease,
-      border-color 180ms ease,
-      transform 220ms ease;
-
-    &::before {
-      position: absolute;
-      z-index: -1;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Cpath fill='white' filter='url(%23grain)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
-      opacity: 0.1;
-      mix-blend-mode: soft-light;
-      content: "";
-      pointer-events: none;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        border-color: #a8bd9c;
-        background-color: rgb(255 255 255 / 8%);
-      }
-    }
+    align-items: center;
+    gap: 1rem;
+    min-height: 7rem;
+    padding-block: 0.5rem;
   }
 }
 
 .ingredientNumber {
-  margin-bottom: 1.25rem;
+  display: none;
   color: #bdcbb8;
   font-size: 0.6875rem;
-  letter-spacing: 0.1em;
+}
+
+.ingredientImage {
+  width: 5rem;
+  height: 5rem;
+  flex-shrink: 0;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 8px rgb(0 0 0 / 18%));
+}
+
+.ingredientCopy {
+  flex: 1;
 }
 
 .ingredientName {
-  margin-bottom: 1rem;
+  display: block;
   font-family: var(--font-heading);
-  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
-.ingredientCta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.25rem;
-  margin-top: auto;
+.ingredientNote {
+  display: block;
+  margin-top: 0.5rem;
   color: #ced6cb;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 
-.kitchenNote {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgb(212 221 197 / 18%);
-  margin: 0;
-  color: #ced6cb;
-  font-family: var(--font-heading);
-  font-size: 0.9375rem;
-  font-style: italic;
+.ingredientArrow {
+  flex-shrink: 0;
+  color: #d4ddc5;
+}
 
-  span {
-    align-self: center;
-    color: #bdcbb8;
-    font-family: var(--font-body);
-    font-size: 0.625rem;
-    font-style: normal;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+@media (prefers-reduced-motion: no-preference) {
+  .ingredientImage,
+  .ingredientArrow {
+    transition: transform 250ms ease;
+  }
+
+  .ingredientGrid a:is(:hover, :focus-visible) {
+    .ingredientImage {
+      transform: rotate(-5deg) scale(1.06);
+    }
+    .ingredientArrow {
+      transform: translateX(4px);
+    }
   }
 }
 
@@ -644,16 +658,21 @@
   }
 
   .basicsIntro {
-    align-self: center;
+    align-self: start;
+    padding-top: 3rem;
   }
 
   .ingredientGrid a {
-    min-height: 11rem;
-    padding: 1.5rem;
+    gap: 1.5rem;
   }
 
-  .kitchenNote {
-    grid-column: 1 / -1;
+  .ingredientNumber {
+    display: block;
+  }
+
+  .ingredientImage {
+    width: 7rem;
+    height: 7rem;
   }
 
   .recipeGrid {
@@ -663,28 +682,4 @@
 
 .recipeEntry > article {
   height: 100%;
-}
-
-.ingredientCta svg {
-  transition: transform 220ms ease;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .ingredientGrid a:focus-visible {
-    transform: translateY(-4px);
-
-    .ingredientCta svg {
-      transform: translateX(4px);
-    }
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .ingredientGrid a:hover {
-      transform: translateY(-4px);
-
-      .ingredientCta svg {
-        transform: translateX(4px);
-      }
-    }
-  }
 }

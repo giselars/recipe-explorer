@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { HomeMotion } from "./HomeMotion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { Recipe } from "@/models/recipe";
 import { HomeRecipeCard } from "./HomeRecipeCard";
@@ -12,6 +13,25 @@ const cuisineFlags: Record<string, string> = {
   Japanese: "🇯🇵",
   Mexican: "🇲🇽",
   Moroccan: "🇲🇦",
+};
+
+const ingredientDetails: Record<string, { image: string; note: string }> = {
+  Chicken: {
+    image: "/ingredients/chicken.png",
+    note: "Roast, simmer, or stir-fry.",
+  },
+  Garlic: {
+    image: "/ingredients/garlic.png",
+    note: "A little clove. A lot of flavour.",
+  },
+  Mushrooms: {
+    image: "/ingredients/mushrooms.png",
+    note: "For risottos, soups, and golden toast.",
+  },
+  Lemon: {
+    image: "/ingredients/lemon.png",
+    note: "Zest, juice, and a bright finish.",
+  },
 };
 
 interface Props {
@@ -74,15 +94,15 @@ export const HomeDiscovery = ({
         >
           <div className={`${styles.basicsInner} site-container`}>
             <div className={styles.basicsIntro} data-home-reveal="rise">
-              <p className={styles.eyebrow}>Ingredient spotlight</p>
+              <p className={styles.eyebrow}>Cook with what you have</p>
               <h2 id="basics-title">
-                Simple ingredients.
+                What’s in your
                 <br />
-                <em>Endless possibilities.</em>
+                <em>kitchen?</em>
               </h2>
               <p>
-                Something delicious starts with what you have. Pick a kitchen
-                staple and find your next favourite dish.
+                A few cloves of garlic, a spare lemon, chicken for tonight.
+                Choose an ingredient and see what you can make.
               </p>
               <Link className={styles.basicsBrowse} href="/categories">
                 Explore all categories{" "}
@@ -91,7 +111,7 @@ export const HomeDiscovery = ({
             </div>
             <div>
               <p className={styles.selectionLabel} data-home-reveal="rise">
-                A few good places to start
+                On the kitchen counter
               </p>
               <ul
                 className={styles.ingredientGrid}
@@ -108,24 +128,41 @@ export const HomeDiscovery = ({
                     <Link
                       href={`/ingredients/${encodeURIComponent(ingredient)}`}
                     >
-                      <span className={styles.ingredientNumber}>
+                      <span
+                        className={styles.ingredientNumber}
+                        aria-hidden="true"
+                      >
                         0{index + 1}
                       </span>
-                      <span className={styles.ingredientName}>
-                        {ingredient}
+                      {ingredientDetails[ingredient] && (
+                        <Image
+                          className={styles.ingredientImage}
+                          src={ingredientDetails[ingredient].image}
+                          alt=""
+                          width={160}
+                          height={160}
+                          sizes="(min-width: 768px) 112px, 80px"
+                        />
+                      )}
+                      <span className={styles.ingredientCopy}>
+                        <span className={styles.ingredientName}>
+                          {ingredient}
+                        </span>
+                        <span className={styles.ingredientNote}>
+                          {ingredientDetails[ingredient]?.note ??
+                            "Find recipes with this ingredient."}
+                        </span>
                       </span>
-                      <span className={styles.ingredientCta}>
-                        Find recipes <ArrowRight size={16} aria-hidden="true" />
-                      </span>
+                      <ArrowRight
+                        className={styles.ingredientArrow}
+                        size={20}
+                        aria-hidden="true"
+                      />
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
-            <p className={styles.kitchenNote} data-home-reveal="rise">
-              <span>From the kitchen</span>
-              Let good ingredients do the talking.
-            </p>
           </div>
         </section>
       )}
