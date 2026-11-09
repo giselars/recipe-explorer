@@ -18,7 +18,6 @@ const Home = async () => {
     collectionResults,
     availableIngredients,
     availableAreas,
-    worldPhotoCollections,
   ] = await Promise.all([
     recipeService.getRecipeById(featuredRecipeId),
     Promise.all(
@@ -28,11 +27,6 @@ const Home = async () => {
     ),
     recipeService.getIngredients().catch((): string[] => []),
     recipeService.getAreas().catch((): string[] => []),
-    Promise.all(
-      featuredAreas
-        .slice(0, 3)
-        .map((area) => recipeService.getRecipesByArea(area).catch(() => [])),
-    ),
   ]);
 
   const recipes = collectionResults.filter(
@@ -43,9 +37,6 @@ const Home = async () => {
     availableIngredients.includes(ingredient),
   );
   const areas = featuredAreas.filter((area) => availableAreas.includes(area));
-  const worldRecipes = worldPhotoCollections.flatMap((areaRecipes) =>
-    areaRecipes.slice(0, 1),
-  );
 
   return (
     <HomeDiscovery
@@ -53,7 +44,6 @@ const Home = async () => {
       recipes={recipes}
       ingredients={ingredients}
       areas={areas}
-      worldRecipes={worldRecipes}
     />
   );
 };

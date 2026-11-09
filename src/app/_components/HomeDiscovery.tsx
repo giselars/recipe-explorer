@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import type { Recipe, RecipeSummary } from "@/models/recipe";
+import type { Recipe } from "@/models/recipe";
 import { HomeRecipeCard } from "./HomeRecipeCard";
+import { HeroVideo } from "./HeroVideo";
 import styles from "./HomeDiscovery.module.scss";
 
 interface Props {
@@ -10,7 +10,6 @@ interface Props {
   recipes: Recipe[];
   ingredients: string[];
   areas: string[];
-  worldRecipes: RecipeSummary[];
 }
 
 export const HomeDiscovery = ({
@@ -18,10 +17,8 @@ export const HomeDiscovery = ({
   recipes,
   ingredients,
   areas,
-  worldRecipes,
 }: Props) => {
   const hasIngredients = ingredients.length > 0;
-  const ingredientPhotoRecipes = recipes.slice(0, 3);
 
   return (
     <main className={styles.page}>
@@ -30,14 +27,7 @@ export const HomeDiscovery = ({
       >
         {featuredRecipe ? (
           <>
-            <Image
-              className={styles.heroImage}
-              src={featuredRecipe.imageUrl}
-              alt={featuredRecipe.name}
-              fill
-              priority
-              sizes="100vw"
-            />
+            <HeroVideo />
             <div className={styles.heroOverlay} />
             <div className={`${styles.heroInner} site-container`}>
               <div className={styles.heroContent}>
@@ -70,87 +60,57 @@ export const HomeDiscovery = ({
 
       {hasIngredients && (
         <section
-          className={`${styles.editorialSection} ${styles.basicsSection}`}
+          className={styles.basicsSection}
+          aria-labelledby="basics-title"
         >
-          <div className={`${styles.editorialInner} site-container`}>
-            <div className={styles.editorialContent}>
-              <div className={styles.editorialCopy}>
-                <p className={styles.eyebrow}>Ingredient spotlight</p>
-                <h2>Start with the basics</h2>
-                <p>
-                  Familiar ingredients are a simple place to begin your next
-                  recipe.
-                </p>
-              </div>
-              <div className={styles.editorialActions}>
-                <ul
-                  className={styles.chipList}
-                  aria-label="Popular ingredients"
-                >
-                  {ingredients.map((ingredient) => (
-                    <li key={ingredient}>
-                      <Link
-                        href={`/ingredients/${encodeURIComponent(ingredient)}`}
-                      >
+          <div className={`${styles.basicsInner} site-container`}>
+            <div className={styles.basicsIntro}>
+              <p className={styles.eyebrow}>Ingredient spotlight</p>
+              <h2 id="basics-title">
+                Simple ingredients.
+                <br />
+                <em>Endless possibilities.</em>
+              </h2>
+              <p>
+                Something delicious starts with what you have. Pick a kitchen
+                staple and find your next favourite dish.
+              </p>
+              <Link className={styles.basicsBrowse} href="/categories">
+                Explore all categories{" "}
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+            <div>
+              <p className={styles.selectionLabel}>
+                A few good places to start
+              </p>
+              <ul
+                className={styles.ingredientGrid}
+                aria-label="Popular ingredients"
+              >
+                {ingredients.map((ingredient, index) => (
+                  <li key={ingredient}>
+                    <Link
+                      href={`/ingredients/${encodeURIComponent(ingredient)}`}
+                    >
+                      <span className={styles.ingredientNumber}>
+                        0{index + 1}
+                      </span>
+                      <span className={styles.ingredientName}>
                         {ingredient}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <Link className={styles.exploreAction} href="/categories">
-                  Explore the basics
-                  <ArrowRight size={14} aria-hidden="true" />
-                </Link>
-              </div>
+                      </span>
+                      <span className={styles.ingredientCta}>
+                        Find recipes <ArrowRight size={16} aria-hidden="true" />
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <div className={styles.photoCluster}>
-              {ingredientPhotoRecipes[0] && (
-                <span className={`${styles.photo} ${styles.ingredientMain}`}>
-                  <Image
-                    src={ingredientPhotoRecipes[0].imageUrl}
-                    alt={ingredientPhotoRecipes[0].name}
-                    fill
-                    sizes="16rem"
-                  />
-                </span>
-              )}
-              {ingredientPhotoRecipes[1] && (
-                <span className={`${styles.photo} ${styles.ingredientHerbs}`}>
-                  <Image
-                    src={ingredientPhotoRecipes[1].imageUrl}
-                    alt={ingredientPhotoRecipes[1].name}
-                    fill
-                    sizes="6rem"
-                  />
-                </span>
-              )}
-              {ingredientPhotoRecipes[2] && (
-                <span className={`${styles.photo} ${styles.ingredientLemons}`}>
-                  <Image
-                    src={ingredientPhotoRecipes[2].imageUrl}
-                    alt={ingredientPhotoRecipes[2].name}
-                    fill
-                    sizes="5rem"
-                  />
-                </span>
-              )}
-            </div>
-
-            <div className={styles.chefComposition}>
-              <div className={styles.chalkboard}>
-                <Image src="/home/chalkboard.jpg" alt="" fill sizes="14rem" />
-                <div className={styles.chalkboardCopy}>
-                  <strong>Chef&apos;s note</strong>
-                  <p>
-                    Salt in layers, taste as you go, and let simple ingredients
-                    do the work.
-                  </p>
-                  <span>— Chef Marta</span>
-                </div>
-              </div>
-              <span className={styles.ingredientArtwork} aria-hidden="true" />
-            </div>
+            <p className={styles.kitchenNote}>
+              <span>From the kitchen</span>
+              Let good ingredients do the talking.
+            </p>
           </div>
         </section>
       )}
@@ -203,39 +163,6 @@ export const HomeDiscovery = ({
                   <ArrowRight size={14} aria-hidden="true" />
                 </Link>
               </div>
-            </div>
-
-            <div className={styles.photoCluster}>
-              {worldRecipes[0] && (
-                <span className={`${styles.photo} ${styles.worldMain}`}>
-                  <Image
-                    src={worldRecipes[0].imageUrl}
-                    alt={worldRecipes[0].name}
-                    fill
-                    sizes="15rem"
-                  />
-                </span>
-              )}
-              {worldRecipes[1] && (
-                <span className={`${styles.photo} ${styles.worldJapanese}`}>
-                  <Image
-                    src={worldRecipes[1].imageUrl}
-                    alt={worldRecipes[1].name}
-                    fill
-                    sizes="6rem"
-                  />
-                </span>
-              )}
-              {worldRecipes[2] && (
-                <span className={`${styles.photo} ${styles.worldMexican}`}>
-                  <Image
-                    src={worldRecipes[2].imageUrl}
-                    alt={worldRecipes[2].name}
-                    fill
-                    sizes="5rem"
-                  />
-                </span>
-              )}
             </div>
 
             <span className={styles.worldArtwork} aria-hidden="true" />
