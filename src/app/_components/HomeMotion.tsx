@@ -17,7 +17,6 @@ export const HomeMotion = ({ children, className = "" }: Props) => {
 
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const elements = root.querySelectorAll<HTMLElement>("[data-home-reveal]");
-    const map = root.querySelector<HTMLElement>("[data-home-map]");
     const reveal = (element: HTMLElement, immediate = false) => {
       element.dataset.homeState = immediate ? "visible" : "entered";
     };
@@ -35,9 +34,6 @@ export const HomeMotion = ({ children, className = "" }: Props) => {
         threshold: 0,
       },
     );
-    const visibilityObserver = new IntersectionObserver(([entry]) => {
-      if (map) map.dataset.homeActive = String(entry.isIntersecting);
-    });
 
     elements.forEach((element) => {
       // Already visible content stays readable during hydration and reloads.
@@ -52,7 +48,6 @@ export const HomeMotion = ({ children, className = "" }: Props) => {
         entranceObserver.observe(element);
       }
     });
-    if (map) visibilityObserver.observe(map);
 
     const onFocus = (event: FocusEvent) => {
       const element = (event.target as HTMLElement).closest<HTMLElement>(
@@ -74,11 +69,9 @@ export const HomeMotion = ({ children, className = "" }: Props) => {
 
     return () => {
       entranceObserver.disconnect();
-      visibilityObserver.disconnect();
       root.removeEventListener("focusin", onFocus);
       preference.removeEventListener("change", onPreferenceChange);
       elements.forEach((element) => delete element.dataset.homeState);
-      if (map) delete map.dataset.homeActive;
     };
   }, []);
 

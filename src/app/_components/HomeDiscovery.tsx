@@ -7,6 +7,13 @@ import { HomeRecipeCard } from "./HomeRecipeCard";
 import { HeroVideo } from "./HeroVideo";
 import styles from "./HomeDiscovery.module.scss";
 
+const cuisineFlags: Record<string, string> = {
+  Italian: "🇮🇹",
+  Japanese: "🇯🇵",
+  Mexican: "🇲🇽",
+  Moroccan: "🇲🇦",
+};
+
 interface Props {
   featuredRecipe: Recipe | null;
   recipes: Recipe[];
@@ -156,6 +163,13 @@ export const HomeDiscovery = ({
         <section
           className={`${styles.editorialSection} ${styles.worldSection}`}
         >
+          <div
+            className={styles.worldMapReveal}
+            data-home-reveal="map"
+            aria-hidden="true"
+          >
+            <span className={styles.worldArtwork} />
+          </div>
           <div className={`${styles.editorialInner} site-container`}>
             <div className={styles.editorialContent} data-home-reveal="rise">
               <div className={styles.editorialCopy}>
@@ -170,25 +184,24 @@ export const HomeDiscovery = ({
                   {areas.map((area) => (
                     <li key={area}>
                       <Link href={`/cuisines/${encodeURIComponent(area)}`}>
-                        {area}
+                        {cuisineFlags[area] && (
+                          <span
+                            className={styles.cuisineFlag}
+                            aria-hidden="true"
+                          >
+                            {cuisineFlags[area]}
+                          </span>
+                        )}
+                        <span>{area}</span>
                       </Link>
                     </li>
                   ))}
                 </ul>
                 <Link className={styles.exploreAction} href="/cuisines">
                   Explore all cuisines
-                  <ArrowRight size={14} aria-hidden="true" />
+                  <ArrowRight size={16} aria-hidden="true" />
                 </Link>
               </div>
-            </div>
-
-            <div
-              className={styles.worldMapReveal}
-              data-home-reveal="map"
-              data-home-map
-              aria-hidden="true"
-            >
-              <span className={styles.worldArtwork} />
             </div>
           </div>
         </section>

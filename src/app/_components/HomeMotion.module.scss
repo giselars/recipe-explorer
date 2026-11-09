@@ -1,6 +1,5 @@
 .root {
   --home-distance: 16px;
-  --home-float: -4px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -24,15 +23,6 @@
       animation-duration: 800ms;
     }
 
-    [data-home-map] > span {
-      animation: float 7s ease-in-out 800ms infinite;
-      animation-play-state: paused;
-    }
-
-    [data-home-map][data-home-active="true"] > span {
-      animation-play-state: running;
-    }
-
     [data-home-state]:focus-within {
       opacity: 1;
       transform: none;
@@ -44,7 +34,6 @@
 @media (min-width: 48rem) {
   .root {
     --home-distance: 28px;
-    --home-float: -8px;
   }
 }
 
@@ -67,15 +56,5 @@
   to {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(var(--home-float));
   }
 }
