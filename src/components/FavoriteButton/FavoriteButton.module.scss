@@ -1,0 +1,54 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-outline-subtle);
+  color: var(--color-primary);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+
+  &:hover {
+    border-color: var(--color-primary);
+    background: #caecbc;
+  }
+
+  &:focus-visible {
+    outline: 0.1875rem solid rgb(51 79 43 / 28%);
+    outline-offset: 0.125rem;
+  }
+
+  &[aria-pressed="true"] {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+}
+
+.default {
+  min-height: 2.875rem;
+  padding-inline: 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.overlay {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 92%);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(0.35rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

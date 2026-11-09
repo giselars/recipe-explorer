@@ -1,0 +1,633 @@
+@use "../../../styles/mixins";
+
+.page {
+  overflow: hidden;
+}
+
+.hero {
+  position: relative;
+  background: #30452b;
+  color: #ffffff;
+
+  &::after {
+    position: absolute;
+    right: -5%;
+    bottom: -1px;
+    left: -5%;
+    height: 2.75rem;
+    border-radius: 50% 50% 0 0 / 45% 45% 0 0;
+    background: var(--color-background);
+    content: "";
+  }
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+  min-height: 34rem;
+  align-items: center;
+  padding-block: 3.5rem 6rem;
+}
+
+.heroCopy {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  justify-items: center;
+  text-align: center;
+
+  h1 {
+    width: 100%;
+    max-width: 38rem;
+    margin: 0 0 1rem;
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 10vw, 4.25rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: #c96643;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.hero .eyebrow {
+  color: #f2d27c;
+}
+
+.heroDescription {
+  max-width: 30rem;
+  margin: 0 0 1.5rem;
+  color: rgb(255 255 255 / 78%);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.search {
+  display: flex;
+  width: 100%;
+  max-width: 30rem;
+  height: 3.25rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding-inline: 1.125rem;
+  border-radius: 1.625rem;
+  background: #ffffff;
+  box-shadow: 0 0.4rem 1.25rem rgb(19 32 22 / 22%);
+  color: var(--color-primary);
+
+  &:focus-within {
+    box-shadow: 0 0 0 0.2rem rgb(242 210 124 / 35%);
+  }
+
+  input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--color-text);
+    font-size: 0.8125rem;
+
+    &::placeholder {
+      color: #777e74;
+    }
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.heroVisual {
+  position: relative;
+  width: 100%;
+  max-width: 38rem;
+  aspect-ratio: 668 / 380;
+  justify-self: center;
+}
+
+.worldMap,
+.heroPhoto {
+  position: absolute;
+  display: block;
+}
+
+.worldMap {
+  z-index: 0;
+  top: -30%;
+  left: 0;
+  width: 100%;
+  height: 160%;
+  background: url("/illustrations/complete-abstract-world-map.svg") center /
+    contain no-repeat;
+  opacity: 0.44;
+}
+
+.heroPhoto {
+  z-index: 1;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 0.25rem solid #fff9ea;
+  border-radius: 50%;
+  box-shadow: 0 0.45rem 1.125rem rgb(19 32 22 / 28%);
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.heroPhotoAmericas {
+  top: 27%;
+  left: 20%;
+  width: 13.2%;
+}
+
+.heroPhotoEurope {
+  top: 17%;
+  left: 45%;
+  width: 15%;
+}
+
+.heroPhotoAsia {
+  top: 26%;
+  left: 79%;
+  width: 13.5%;
+}
+
+.featuredSection {
+  padding-block: 4rem 6rem;
+}
+
+.sectionHeader,
+.atlasHeader {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  text-align: center;
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 6vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+  }
+}
+
+.sectionHeader > a {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  gap: 0.55rem;
+  padding-inline: 1rem;
+  border: 1px solid #d6d6ca;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  color: #4c554a;
+  font-size: 0.6875rem;
+  font-weight: 600;
+
+  svg {
+    color: #c96643;
+  }
+}
+
+.mosaic {
+  display: grid;
+  width: 100%;
+  max-width: 32rem;
+  gap: 1rem;
+  margin-inline: auto;
+}
+
+.journeyCard {
+  position: relative;
+  min-height: 16rem;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: #d8d6cc;
+  box-shadow: 0 0.5rem 1.375rem rgb(51 79 43 / 9%);
+  color: #ffffff;
+
+  > a {
+    position: absolute;
+    inset: 0;
+  }
+
+  img {
+    object-fit: cover;
+    transition: transform 350ms ease;
+  }
+
+  &:hover img {
+    transform: scale(1.035);
+  }
+}
+
+.primaryJourney {
+  min-height: 31rem;
+}
+
+.imageShade {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 28%,
+    rgb(21 33 20 / 86%) 100%
+  );
+}
+
+.journeyIndex,
+.journeyCopy,
+.journeyArrow {
+  position: absolute;
+  z-index: 2;
+}
+
+.journeyIndex {
+  top: 1.35rem;
+  left: 1.35rem;
+  color: rgb(255 255 255 / 86%);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.journeyCopy {
+  right: 1.5rem;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  display: grid;
+  gap: 0.35rem;
+
+  strong {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  > span {
+    max-width: 23rem;
+    color: rgb(255 255 255 / 82%);
+    font-size: 0.6875rem;
+    line-height: 1.4;
+  }
+}
+
+.primaryJourney .journeyCopy strong {
+  font-size: 2.25rem;
+}
+
+.journeyArrow {
+  right: 1.25rem;
+  bottom: 1.25rem;
+  display: none;
+  color: #f2d27c;
+}
+
+.atlas {
+  position: relative;
+  scroll-margin-top: 2rem;
+  background: #f2d27c;
+  color: #452f27;
+
+  &::before {
+    position: absolute;
+    top: -1.75rem;
+    right: -5%;
+    left: -5%;
+    height: 2rem;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    background: #f2d27c;
+    content: "";
+  }
+}
+
+.atlasInner {
+  padding-block: 3.5rem 5rem;
+}
+
+.searchAtlas {
+  min-height: 31rem;
+  background: var(--color-background);
+  color: var(--color-text);
+
+  &::before {
+    background: var(--color-background);
+  }
+
+  .atlasHeader > p {
+    color: var(--color-text-muted);
+  }
+
+  .directory {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 20rem));
+    justify-content: start;
+    gap: 1rem;
+
+    a {
+      --result-bg: #dde8d4;
+      --result-accent: #f2d27c;
+      position: relative;
+      min-height: 12rem;
+      align-items: end;
+      overflow: hidden;
+      border: 1px solid rgb(51 79 43 / 9%);
+      border-radius: 1.125rem;
+      background: var(--result-bg);
+      box-shadow: 0 0.5rem 1.375rem rgb(51 79 43 / 9%);
+      color: #263522;
+      font-size: 1.75rem;
+      transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+
+      &::after {
+        position: absolute;
+        top: -3rem;
+        right: -2rem;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        background: var(--result-accent);
+        content: "";
+        opacity: 0.46;
+      }
+
+      &:hover {
+        box-shadow: 0 0.75rem 1.75rem rgb(51 79 43 / 14%);
+        transform: translateY(-0.18rem);
+      }
+    }
+
+    a:nth-child(5n + 2) {
+      --result-bg: #f5e7d7;
+      --result-accent: #e8b18e;
+    }
+
+    a:nth-child(5n + 3) {
+      --result-bg: #dce9e8;
+      --result-accent: #a9d3d0;
+    }
+
+    a:nth-child(5n + 4) {
+      --result-bg: #f4e3e0;
+      --result-accent: #e7b7aa;
+    }
+
+    a:nth-child(5n + 5) {
+      --result-bg: #eee8cf;
+      --result-accent: #e2c867;
+    }
+  }
+}
+
+.searchHint {
+  margin: -0.75rem 0 1.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+}
+
+.cuisineLinkCopy,
+.directoryArrow {
+  display: contents;
+}
+
+.searchAtlas .cuisineLinkCopy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.25rem;
+
+  small {
+    color: #c96643;
+    font-family: var(--font-body);
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+}
+
+.cuisineMonogram {
+  display: none;
+}
+
+.searchAtlas .cuisineMonogram {
+  position: absolute;
+  z-index: 1;
+  top: 0.75rem;
+  right: 0.9rem;
+  display: block;
+  color: rgb(38 53 34 / 9%);
+  font-family: var(--font-heading);
+  font-size: 5.25rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.searchAtlas .directoryArrow {
+  position: absolute;
+  z-index: 2;
+  right: 1rem;
+  bottom: 1rem;
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 76%);
+  color: #c96643;
+  place-items: center;
+}
+
+.atlasHeader {
+  > p {
+    margin: 0;
+    color: rgb(69 47 39 / 74%);
+    font-size: 0.75rem;
+  }
+}
+
+.alphabet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.3rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+
+  button {
+    display: grid;
+    min-width: 1.8rem;
+    height: 1.8rem;
+    padding: 0;
+    flex: 0 0 auto;
+    border: 0;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 44%);
+    color: #6d4839;
+    cursor: pointer;
+    font-size: 0.625rem;
+    font-weight: 700;
+    place-items: center;
+  }
+
+  button:first-child {
+    min-width: 2.5rem;
+    padding-inline: 0.65rem;
+    border-radius: 1rem;
+  }
+
+  .activeLetter {
+    background: #c96643;
+    color: #ffffff;
+  }
+}
+
+.directory {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 0.55rem;
+
+  a {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-inline: 0.95rem;
+    border: 1px solid rgb(109 72 57 / 14%);
+    border-radius: 0.75rem;
+    background: rgb(255 255 255 / 27%);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+
+    svg {
+      flex: 0 0 auto;
+      color: #c96643;
+    }
+  }
+}
+
+.empty {
+  padding: 4rem 1rem;
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 32%);
+  text-align: center;
+
+  h2 {
+    margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
+  }
+
+  p {
+    margin: 0;
+    color: rgb(69 47 39 / 72%);
+  }
+}
+
+@include mixins.tablet {
+  .heroInner {
+    min-height: 36rem;
+    padding-block: 4rem 6rem;
+  }
+
+  .sectionHeader,
+  .atlasHeader {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    text-align: left;
+  }
+
+  .sectionHeader > a {
+    justify-self: end;
+  }
+
+  .mosaic {
+    max-width: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-inline: 0;
+  }
+
+  .primaryJourney {
+    grid-column: 1 / -1;
+  }
+
+  .directory {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .searchAtlas .directory {
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 20rem));
+  }
+}
+
+@include mixins.desktop {
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr) minmax(31rem, 0.9fr);
+    min-height: 27.5rem;
+    padding-block: 3rem 5rem;
+  }
+
+  .heroCopy {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .featuredSection {
+    padding-block: 4rem 6rem;
+  }
+
+  .mosaic {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, 16.75rem);
+    gap: 1.5rem;
+  }
+
+  .journeyCard,
+  .primaryJourney {
+    min-height: 0;
+  }
+
+  .primaryJourney {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .atlasInner {
+    padding-block: 4rem 5rem;
+  }
+
+  .alphabet {
+    justify-content: flex-end;
+  }
+
+  .directory {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .searchAtlas .directory {
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 20rem));
+  }
+}

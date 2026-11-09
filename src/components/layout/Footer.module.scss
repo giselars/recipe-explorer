@@ -1,0 +1,46 @@
+@use "../../styles/mixins";
+
+.footer {
+  margin-top: 0;
+  border-top: 1px solid
+    color-mix(in srgb, var(--color-outline-subtle) 55%, transparent);
+  background: var(--color-surface-muted);
+}
+
+.inner {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: 2rem;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+}
+
+.brand {
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.copy {
+  opacity: 0.8;
+}
+
+@include mixins.tablet {
+  .inner {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    min-height: 8rem;
+    text-align: left;
+  }
+
+  .copy {
+    justify-self: end;
+  }
+}

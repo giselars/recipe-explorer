@@ -1,0 +1,60 @@
+.loadingPage {
+  display: grid;
+  gap: 1.5rem;
+  padding-block: 1rem 4rem;
+}
+
+.loadingHero,
+.loadingHeading,
+.loadingCard {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    100deg,
+    var(--color-surface-muted) 25%,
+    var(--color-surface-raised) 50%,
+    var(--color-surface-muted) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.loadingHero {
+  min-height: 31rem;
+  border-radius: var(--radius-xl);
+}
+
+.loadingHeading {
+  width: min(20rem, 70%);
+  height: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+.loadingGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.loadingCard {
+  aspect-ratio: 3 / 4;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (min-width: 48rem) {
+  .loadingPage {
+    padding-top: 2rem;
+  }
+
+  .loadingHero {
+    min-height: 35rem;
+  }
+
+  .loadingGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

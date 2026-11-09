@@ -1,0 +1,79 @@
+@use "../../../styles/mixins";
+
+.page {
+  padding-block: 2.5rem 4rem;
+}
+
+.intro {
+  max-width: 42rem;
+  margin: 0 auto 2rem;
+  text-align: center;
+
+  p {
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin-bottom: 0.75rem;
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    line-height: 1.15;
+  }
+
+  span {
+    color: var(--color-text-muted);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+}
+
+.empty {
+  padding: 4rem 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-muted);
+  text-align: center;
+
+  h2 {
+    margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
+  }
+
+  p {
+    color: var(--color-text-muted);
+  }
+
+  a {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-weight: 700;
+  }
+}
+
+@include mixins.tablet {
+  .page {
+    padding-block: 4rem 6rem;
+  }
+
+  .intro {
+    margin-bottom: 3rem;
+  }
+}
+
+@include mixins.desktop {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}

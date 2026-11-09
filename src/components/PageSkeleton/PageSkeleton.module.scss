@@ -1,0 +1,39 @@
+.page {
+  padding-block: 3rem;
+}
+
+.heading,
+.card {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-muted),
+    var(--color-surface-raised),
+    var(--color-surface-muted)
+  );
+  background-size: 200% 100%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.heading {
+  width: min(28rem, 80%);
+  height: 6rem;
+  margin-bottom: 3rem;
+  border-radius: var(--radius-lg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  min-height: 22rem;
+  border-radius: var(--radius-lg);
+}
+
+@keyframes pulse {
+  to {
+    background-position: -200% 0;
+  }
+}
