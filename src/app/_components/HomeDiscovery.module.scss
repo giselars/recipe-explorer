@@ -272,20 +272,39 @@ $section-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
   list-style: none;
 
   a {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     display: flex;
     min-height: 10.5rem;
     flex-direction: column;
     padding: 1.125rem;
     border: 1px solid rgb(212 221 197 / 20%);
     border-radius: var(--radius-lg);
-    background: rgb(255 255 255 / 3%);
+    background-color: rgb(255 255 255 / 3%);
+    background-image: radial-gradient(
+      ellipse at top right,
+      rgb(212 221 197 / 9%),
+      transparent 75%
+    );
     transition:
       background-color 180ms ease,
       border-color 180ms ease;
 
+    &::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Cpath fill='white' filter='url(%23grain)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+      opacity: 0.1;
+      mix-blend-mode: soft-light;
+      content: "";
+      pointer-events: none;
+    }
+
     &:hover {
       border-color: #a8bd9c;
-      background: rgb(255 255 255 / 8%);
+      background-color: rgb(255 255 255 / 8%);
     }
   }
 }
