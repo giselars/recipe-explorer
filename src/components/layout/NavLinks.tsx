@@ -6,9 +6,10 @@ import styles from "./Header.module.scss";
 
 const links = [
   {
-    href: "/",
+    href: "/cuisines",
     label: "Recipes",
-    isActive: (path: string) => path === "/" || path.startsWith("/recipes/"),
+    isActive: (path: string) =>
+      path.startsWith("/cuisines") || path.startsWith("/recipes/"),
   },
   {
     href: "/categories",
