@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { recipeService } from "@/lib/recipes/recipe-service";
+import { featuredIngredients } from "@/lib/recipes/featured-ingredients";
 import { HomeDiscovery } from "./_components";
 
 const featuredRecipeId = "52982";
 const collectionRecipeIds = ["52844", "52772", "52874", "52940"];
-const featuredIngredients = ["Chicken", "Garlic", "Mushrooms", "Lemon"];
+
 const featuredAreas = ["Italian", "Japanese", "Mexican", "Moroccan"];
 
 export const metadata: Metadata = {
