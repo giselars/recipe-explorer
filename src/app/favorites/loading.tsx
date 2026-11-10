@@ -1,5 +1,4 @@
-import { PageSkeleton } from "@/components";
-
-const FavoritesLoading = () => <PageSkeleton />;
-
-export default FavoritesLoading;
+import { DiscoveryPageSkeleton } from "@/components/DiscoveryPage/DiscoveryPageSkeleton";
+export default function FavoritesLoading() {
+  return <DiscoveryPageSkeleton favorites />;
+}
