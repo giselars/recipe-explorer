@@ -20,11 +20,39 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.SITE_URL ??
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : "https://recipe-explorer-gray.vercel.app"),
+  ),
   title: {
     default: "Recipe Explorer",
     template: "%s | Recipe Explorer",
   },
   description: "Discover recipes for every table and occasion.",
+  openGraph: {
+    type: "website",
+    siteName: "Recipe Explorer",
+    locale: "en_US",
+    images: [
+      {
+        url: "/images/social-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Recipe Explorer — recipes for every table.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      {
+        url: "/images/social-preview.png",
+        alt: "Recipe Explorer — recipes for every table.",
+      },
+    ],
+  },
 };
 
 const RootLayout = ({ children }: LayoutProps<"/">) => {

@@ -48,6 +48,19 @@ export const generateMetadata = async ({
     ? {
         title: recipe.name,
         description: `Ingredients and instructions for ${recipe.name}.`,
+        openGraph: {
+          type: "website",
+          siteName: "Recipe Explorer",
+          title: `${recipe.name} | Recipe Explorer`,
+          description: `Ingredients and instructions for ${recipe.name}.`,
+          images: [{ url: recipe.imageUrl, alt: recipe.name }],
+        },
+        twitter: {
+          card: "summary_large_image",
+          title: `${recipe.name} | Recipe Explorer`,
+          description: `Ingredients and instructions for ${recipe.name}.`,
+          images: [{ url: recipe.imageUrl, alt: recipe.name }],
+        },
       }
     : { title: "Recipe not found" };
 };
