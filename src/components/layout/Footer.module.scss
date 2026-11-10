@@ -30,6 +30,12 @@
 
 .copy {
   opacity: 0.8;
+
+  a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
 }
 
 @include mixins.tablet {

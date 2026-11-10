@@ -3,10 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowDown,
-  ExternalLink,
   ListOrdered,
+  Leaf,
   MapPin,
-  Play,
   ShoppingBasket,
   Utensils,
 } from "lucide-react";
@@ -162,7 +161,11 @@ const RecipePage = async ({ params }: Props) => {
             <ul>
               {recipe.ingredients.map((ingredient, index) => (
                 <li key={`${ingredient.name}-${index}`}>
-                  <span className={styles.ingredientCheck} aria-hidden="true" />
+                  <Leaf
+                    className={styles.ingredientIcon}
+                    size={18}
+                    aria-hidden="true"
+                  />
                   <span>{ingredient.name}</span>
                   <strong>{ingredient.measure ?? "As needed"}</strong>
                 </li>
@@ -177,22 +180,6 @@ const RecipePage = async ({ params }: Props) => {
               begin.
             </p>
           </aside>
-
-          {(recipe.sourceUrl || recipe.videoUrl) && (
-            <aside className={styles.resources} aria-label="Recipe resources">
-              <h2>Continue exploring</h2>
-              {recipe.sourceUrl && (
-                <Link href={recipe.sourceUrl} target="_blank" rel="noreferrer">
-                  Original source <ExternalLink aria-hidden="true" size={16} />
-                </Link>
-              )}
-              {recipe.videoUrl && (
-                <Link href={recipe.videoUrl} target="_blank" rel="noreferrer">
-                  Watch the video <Play aria-hidden="true" size={16} />
-                </Link>
-              )}
-            </aside>
-          )}
         </aside>
 
         <section
