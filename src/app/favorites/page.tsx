@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { FavoritesGrid } from "./_components";
-import styles from "./page.module.scss";
+import { DiscoveryPage } from "@/components/DiscoveryPage/DiscoveryPage";
 
 export const metadata: Metadata = {
   title: "Favorite recipes",
@@ -9,17 +9,13 @@ export const metadata: Metadata = {
 
 const FavoritesPage = () => {
   return (
-    <main className={`${styles.page} site-container`}>
-      <header className={styles.intro}>
-        <p>Your recipe box</p>
-        <h1>Favorite recipes</h1>
-        <span>
-          Keep the dishes you love close and return whenever inspiration
-          strikes.
-        </span>
-      </header>
+    <DiscoveryPage
+      eyebrow="Your recipe box"
+      title="Favorite recipes"
+      description="Keep the dishes you love close and return whenever inspiration strikes."
+    >
       <FavoritesGrid />
-    </main>
+    </DiscoveryPage>
   );
 };
 

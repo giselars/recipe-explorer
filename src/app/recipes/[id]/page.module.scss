@@ -292,12 +292,10 @@
   }
 }
 
-.ingredientCheck {
+.ingredientIcon {
   width: 1.125rem;
   height: 1.125rem;
-  border: 1px solid rgb(255 255 255 / 42%);
-  border-radius: 50%;
-  background: rgb(255 255 255 / 7%);
+  color: #f2d27c;
 }
 
 .kitchenNote {
@@ -319,35 +317,6 @@
     font-family: var(--font-handwriting);
     font-size: 1.5rem;
     line-height: 1.15;
-  }
-}
-
-.resources {
-  padding: 1.5rem;
-  border: 1px solid var(--color-outline-subtle);
-  border-radius: 1.25rem;
-  background: #ffffff;
-  box-shadow: var(--shadow-card);
-
-  h2 {
-    margin: 0 0 0.5rem;
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-  }
-
-  a {
-    display: flex;
-    min-height: 2.75rem;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid var(--color-outline-subtle);
-    color: #30452b;
-    font-size: 0.75rem;
-    font-weight: 600;
-
-    svg {
-      color: #c96643;
-    }
   }
 }
 
@@ -408,11 +377,6 @@
   font-size: 0.625rem;
   font-weight: 700;
   place-items: center;
-}
-
-.step:first-child .stepNumber {
-  background: #c96643;
-  color: #ffffff;
 }
 
 @include mixins.tablet {

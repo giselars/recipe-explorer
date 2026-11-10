@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState, startTransition } from "react";
-import { RecipeCard } from "@/components";
+import { CollectionRecipeCard } from "@/components/RecipeCollection/CollectionRecipeCard";
+import shared from "@/components/DiscoveryPage/DiscoveryPage.module.scss";
 import { useFavorites } from "@/features/favorites";
 import type { RecipeSummary } from "@/models/recipe";
 import { getFavoriteRecipes } from "../actions";
@@ -63,7 +64,7 @@ export const FavoritesGrid = () => {
 
   if (state.status === "error") {
     return (
-      <div className={styles.empty} role="alert">
+      <div className={shared.empty} role="alert">
         <h2>We couldn&apos;t load your favorites</h2>
         <p>Please refresh the page and try again.</p>
       </div>
@@ -72,7 +73,7 @@ export const FavoritesGrid = () => {
 
   if (state.recipes.length === 0) {
     return (
-      <div className={styles.empty}>
+      <div className={shared.empty}>
         <h2>Your recipe box is empty</h2>
         <p>
           Save recipes as you browse and they&apos;ll be waiting for you here.
@@ -84,16 +85,16 @@ export const FavoritesGrid = () => {
 
   return (
     <section aria-labelledby="saved-recipes-title">
-      <header className={styles.heading}>
+      <header className={shared.heading}>
         <h2 id="saved-recipes-title">Saved recipes</h2>
         <span>
           {state.recipes.length}{" "}
           {state.recipes.length === 1 ? "recipe" : "recipes"}
         </span>
       </header>
-      <div className={styles.grid}>
+      <div className={shared.grid}>
         {state.recipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
+          <CollectionRecipeCard key={recipe.id} recipe={recipe} />
         ))}
       </div>
     </section>

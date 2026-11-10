@@ -10,7 +10,11 @@ export const Footer = () => {
         </Link>
         <p>Recipes for every table.</p>
         <p className={styles.copy}>
-          © 2026 Recipe Explorer. All rights reserved.
+          Recipes powered by{" "}
+          <a href="https://www.themealdb.com/" target="_blank" rel="noreferrer">
+            TheMealDB
+          </a>
+          .
         </p>
       </div>
     </footer>

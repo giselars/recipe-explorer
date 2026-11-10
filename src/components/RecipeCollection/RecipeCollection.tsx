@@ -10,6 +10,8 @@ type CollectionLink = { label: string; href: string };
 
 interface Props {
   name: string;
+  title?: string;
+  waves?: boolean;
   eyebrow: string;
   description: string;
   recipes: RecipeSummary[];
@@ -23,6 +25,8 @@ interface Props {
 
 export const RecipeCollection = ({
   name,
+  title,
+  waves = false,
   eyebrow,
   description,
   recipes,
@@ -42,12 +46,12 @@ export const RecipeCollection = ({
     `${basePath}?page=${page}#recipe-collection`;
 
   return (
-    <main className={styles.page}>
+    <div className={`${styles.page} ${waves ? styles.waves : ""}`}>
       <section className={styles.hero}>
         <div className={`${styles.heroInner} site-container`}>
           <div className={styles.heroCopy}>
             <p className={styles.eyebrow}>{eyebrow}</p>
-            <h1>{name} recipes</h1>
+            <h1>{title ?? `${name} recipes`}</h1>
             <p className={styles.heroDescription}>{description}</p>
             <div className={styles.heroActions}>
               <span className={styles.recipeCount}>
@@ -222,6 +226,6 @@ export const RecipeCollection = ({
           <Link href={backLink.href}>{emptyLinkLabel}</Link>
         </section>
       )}
-    </main>
+    </div>
   );
 };

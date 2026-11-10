@@ -1,4 +1,5 @@
 @use "../../styles/mixins";
+@use "../../styles/section-wave";
 
 .page {
   overflow: hidden;
@@ -435,5 +436,43 @@
 
   .mosaic > article:nth-child(2) {
     min-height: 31.25rem;
+  }
+}
+
+.waves {
+  .hero {
+    --wave-height: clamp(4rem, 9vw, 8rem);
+    position: relative;
+    background: #293e30;
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      left: 0;
+      height: var(--wave-height);
+      background: var(--color-background);
+      @include section-wave.mask;
+      content: "";
+      pointer-events: none;
+    }
+  }
+  .heroInner {
+    padding-bottom: calc(var(--wave-height) + 2rem);
+  }
+  .discovery {
+    --wave-height: clamp(4rem, 8vw, 7rem);
+    position: relative;
+    margin-top: var(--wave-height);
+    &::before {
+      position: absolute;
+      top: calc(1px - var(--wave-height));
+      right: 0;
+      left: 0;
+      height: var(--wave-height);
+      background: #f2d27c;
+      @include section-wave.mask;
+      content: "";
+      pointer-events: none;
+    }
   }
 }
